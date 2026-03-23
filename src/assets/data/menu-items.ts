@@ -1,0 +1,157 @@
+import type { MenuItemType } from '@/types/menu'
+import { PERMISSIONS } from '@/config/permissions'
+
+export const MENU_ITEMS: MenuItemType[] = [
+  {
+    key: 'menu',
+    label: 'Main',
+    isTitle: true,
+  },
+  {
+    key: 'dashboard',
+    icon: 'ri:dashboard-2-line',
+    label: 'Dashboard',
+    url: '/dashboard',
+    permission: PERMISSIONS.VIEW_DASHBOARD,
+  },
+  {
+    key: 'apps',
+    label: 'App',
+    isTitle: true,
+  },
+  {
+    key: 'apps-calendar',
+    icon: 'ri:calendar-line',
+    label: 'Calendar',
+    url: '/apps/calendar',
+    permission: PERMISSIONS.VIEW_CALENDAR,
+  },
+  {
+    key: 'apps-email',
+    icon: 'ri:mail-line',
+    label: 'Email',
+    url: '/apps/email',
+    permission: PERMISSIONS.VIEW_EMAIL,
+  },
+  {
+    key: 'apps-invoices',
+    icon: 'ri:article-line',
+    label: 'Invoice',
+    permission: PERMISSIONS.VIEW_INVOICES,
+    children: [
+      {
+        key: 'invoices-report',
+        label: 'Invoice Report',
+        url: '/apps/invoices/report',
+        parentKey: 'apps-invoices',
+        permission: PERMISSIONS.VIEW_INVOICES,
+      },
+      {
+        key: 'invoices-list',
+        label: 'Invoice List',
+        url: '/apps/invoices',
+        parentKey: 'apps-invoices',
+        permission: PERMISSIONS.VIEW_INVOICES,
+      },
+      {
+        key: 'invoice-details',
+        label: 'Invoice Details',
+        url: '/apps/invoices/:id',
+        parentKey: 'apps-invoices',
+        permission: PERMISSIONS.VIEW_INVOICES,
+      },
+    ],
+  },
+  {
+    key: 'content',
+    label: 'Content',
+    isTitle: true,
+  },
+  {
+    key: 'projects',
+    icon: 'ri:folder-line',
+    label: 'Projects',
+    url: '/content/projects',
+    permission: PERMISSIONS.VIEW_PROJECTS,
+  },
+  {
+    key: 'blogs',
+    icon: 'ri:article-line',
+    label: 'Blogs',
+    url: '/content/blogs',
+    permission: PERMISSIONS.VIEW_BLOGS,
+  },
+  {
+    key: 'company-info',
+    icon: 'ri:building-line',
+    label: 'Company Information',
+    url: '/content/company-info',
+    permission: PERMISSIONS.VIEW_COMPANY_INFO,
+  },
+  {
+    key: 'admin',
+    label: 'Admin',
+    isTitle: true,
+  },
+  {
+    key: 'admin-group',
+    icon: 'ri:shield-user-line',
+    label: 'Admin',
+    permission: PERMISSIONS.VIEW_USERS,
+    children: [
+      {
+        key: 'admin-users',
+        label: 'Users',
+        url: '/admin/users',
+        parentKey: 'admin-group',
+        permission: PERMISSIONS.VIEW_USERS,
+      },
+      {
+        key: 'admin-roles',
+        label: 'Roles',
+        url: '/admin/roles',
+        parentKey: 'admin-group',
+        permission: PERMISSIONS.VIEW_ROLES,
+      },
+      {
+        key: 'admin-permissions',
+        label: 'Permissions',
+        url: '/admin/permissions',
+        parentKey: 'admin-group',
+        permission: PERMISSIONS.VIEW_ROLES,
+      },
+      {
+        key: 'admin-role-matrix',
+        label: 'Role Matrix',
+        url: '/admin/role-matrix',
+        parentKey: 'admin-group',
+        permission: PERMISSIONS.VIEW_ROLES,
+      },
+      {
+        key: 'admin-connections',
+        label: 'Connections',
+        url: '/admin/connections',
+        parentKey: 'admin-group',
+        permission: PERMISSIONS.VIEW_CONNECTIONS,
+      },
+    ],
+  },
+  {
+    key: 'account',
+    label: 'Account',
+    isTitle: true,
+  },
+  {
+    key: 'page-profile',
+    icon: 'ri:user-line',
+    label: 'Profile',
+    url: '/pages/profile',
+    permission: PERMISSIONS.VIEW_PROFILE,
+  },
+  {
+    key: 'page-logout',
+    icon: 'ri:logout-circle-r-line',
+    label: 'Logout',
+    url: '/auth/logout',
+  },
+]
