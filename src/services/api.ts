@@ -1,6 +1,10 @@
 import axios from 'axios';
 
-const API_URL = import.meta.env.VITE_API_URL || 'https://gamsaj-api.onrender.com/api';
+const API_URL = (() => {
+  const url = import.meta.env.VITE_API_URL || 'https://gamsaj-api.onrender.com/api';
+  // Ensure /api suffix is always present
+  return url.endsWith('/api') ? url : url.replace(/\/$/, '') + '/api';
+})();
 
 const api = axios.create({
   baseURL: API_URL,
