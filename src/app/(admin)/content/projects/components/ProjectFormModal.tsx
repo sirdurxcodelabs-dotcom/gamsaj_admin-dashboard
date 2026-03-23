@@ -53,7 +53,9 @@ const ProjectFormModal = ({ show, project, onHide, onSaved }: Props) => {
         tags: project.tags?.join(', ') || '',
         projectManagerId: project.projectManagerId?._id || '',
         assignedUsers: project.assignedUsers?.map(u => u._id) || [],
-        featuredImage: project.featuredImage || { url: '', publicId: '' },
+        featuredImage: project.featuredImage
+          ? { url: project.featuredImage.url, publicId: project.featuredImage.publicId ?? '' }
+          : { url: '', publicId: '' },
       })
     } else {
       setForm({ ...EMPTY })
@@ -71,7 +73,7 @@ const ProjectFormModal = ({ show, project, onHide, onSaved }: Props) => {
       setUploading(true)
       const res = await uploadAPI.uploadSingle(file)
       if (res.data.success) {
-        setForm(prev => ({ ...prev, featuredImage: { url: res.data.url, publicId: res.data.publicId || '' } }))
+        setForm(prev => ({ ...prev, featuredImage: { url: res.data.url, publicId: res.data.publicId ?? '' } }))
       }
     } catch { setError('Image upload failed') }
     finally { setUploading(false) }

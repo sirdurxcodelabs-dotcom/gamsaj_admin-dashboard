@@ -1,5 +1,5 @@
 import { DateInput, EventClickArg, EventDropArg, EventInput } from '@fullcalendar/core'
-import { DateClickArg, Draggable, type DropArg } from '@fullcalendar/interaction'
+import { DateClickArg, Draggable } from '@fullcalendar/interaction'
 import { useEffect, useState, useRef, useCallback } from 'react'
 import { calendarAPI } from '@/services/api'
 import { useSearchParams } from 'react-router-dom'
@@ -140,15 +140,15 @@ const useCalendar = () => {
     setEventData({
       id: String(arg.event.id),
       title: arg.event.title,
-      start: arg.event.start,
-      end: arg.event.end,
+      start: arg.event.start ?? undefined,
+      end: arg.event.end ?? undefined,
       extendedProps: arg.event.extendedProps,
     })
     setIsEditable(true)
     onOpenModal()
   }
 
-  const onDrop = async (arg: DropArg) => {
+  const onDrop = async (arg: any) => {
     if (isCreatingEvent.current) return
     try {
       isCreatingEvent.current = true
@@ -274,7 +274,7 @@ const useCalendar = () => {
       })
       const updated = allEvents.map(e =>
         e.id === arg.event.id
-          ? { ...e, start: arg.event.start as DateInput, end: arg.event.end as DateInput }
+          ? { ...e, start: (arg.event.start ?? undefined) as DateInput | undefined, end: (arg.event.end ?? undefined) as DateInput | undefined }
           : e
       )
       setAllEvents(updated)

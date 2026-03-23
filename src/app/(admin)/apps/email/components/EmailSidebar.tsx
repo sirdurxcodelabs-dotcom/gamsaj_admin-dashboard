@@ -44,9 +44,9 @@ const EmailSidebar = ({ currentFolder, onFolderChange, onCompose, counts }: Emai
                 <IconifyIcon icon={folder.icon} className="me-2 fs-18" />
                 <span>{folder.label}</span>
               </div>
-              {folder.id === 'inbox' && folder.unread > 0 ? (
+              {folder.id === 'inbox' && (folder.unread ?? 0) > 0 ? (
                 <span className={`badge ${currentFolder === folder.id ? 'bg-white text-primary' : 'bg-primary'}`}>
-                  {folder.unread}
+                  {folder.unread ?? 0}
                 </span>
               ) : folder.count > 0 ? (
                 <span className="text-muted small">({folder.count})</span>

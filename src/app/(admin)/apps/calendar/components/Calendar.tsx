@@ -61,9 +61,7 @@ const Calendar = ({ events, onDateClick, onDrop, onEventClick, onEventDrop }: Ca
           eventDisplay="block"
           eventBackgroundColor="transparent"
           eventBorderColor="transparent"
-          eventClassNames={(arg) => {
-            // Get the color from className or extendedProps
-            const color = arg.event.classNames[0] || arg.event.backgroundColor || '#007bff'
+          eventClassNames={() => {
             return [`event-custom-color`]
           }}
           eventDidMount={(info) => {

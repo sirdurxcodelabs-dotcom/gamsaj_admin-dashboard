@@ -80,7 +80,7 @@ const ProjectViewModal = ({ show, project, onHide, onEdit, onRefresh }: Props) =
         setUploadingImages(false)
       }
 
-      await projectAPI.addUpdate(project._id, { ...newUpdate, images: uploadedImages })
+      await projectAPI.addUpdate(project._id, { ...newUpdate, images: uploadedImages } as any)
       setNewUpdate({ title: '', description: '', type: 'progress-update' })
       setUpdateImages([])
       fetchUpdates()

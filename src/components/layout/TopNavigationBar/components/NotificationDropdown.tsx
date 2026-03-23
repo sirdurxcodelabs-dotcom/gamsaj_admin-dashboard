@@ -2,7 +2,7 @@ import IconifyIcon from '@/components/wrappers/IconifyIcon'
 import SimplebarReactClient from '@/components/wrappers/SimplebarReactClient'
 import { timeSince } from '@/utils/date'
 import { Link, useNavigate } from 'react-router-dom'
-import { Col, Dropdown, DropdownItem, DropdownMenu, DropdownToggle, Row } from 'react-bootstrap'
+import { Col, Dropdown, DropdownMenu, DropdownToggle, Row } from 'react-bootstrap'
 import { useEffect, useState, useRef } from 'react'
 import { notificationsAPI } from '@/services/api'
 
@@ -120,7 +120,7 @@ const NotificationDropdown = () => {
   }
 
   // Get icon based on notification type
-  const getNotificationIcon = (type: string, priority: string) => {
+  const getNotificationIcon = (type: string, _priority: string) => {
     switch (type) {
       case 'event_reminder':
         return 'ri:calendar-event-fill'
@@ -234,7 +234,7 @@ const NotificationDropdown = () => {
               </div>
             ) : (
               <div className="p-0">
-                {notifications.map((notification, index) => {
+                {notifications.map((notification) => {
                   const variant = getVariant(notification.priority)
                   const icon = getNotificationIcon(notification.type, notification.priority)
 

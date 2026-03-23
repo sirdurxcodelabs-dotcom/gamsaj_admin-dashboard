@@ -19,7 +19,7 @@ const MANAGEMENT_SLUGS = ['business-development-manager', 'head-of-finance', 'ad
 const FIELD_SLUGS = ['technician', 'artisan', 'subcontractor']
 
 const Dashboard = () => {
-  const { user: authUser } = useAuthContext()
+  useAuthContext()
   const [data, setData] = useState<DashboardData | null>(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')

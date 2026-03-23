@@ -13,7 +13,6 @@ const CATEGORY_LABELS: Record<string, string> = {
 const RoleFormModal = ({ show, onHide, role, onSuccess }: Props) => {
   const isEdit = !!role?._id
   const [loading, setLoading] = useState(false)
-  const [allPerms, setAllPerms] = useState<Permission[]>([])
   const [grouped, setGrouped] = useState<Record<string, Permission[]>>({})
   const [error, setError] = useState('')
   const [form, setForm] = useState({ name: '', description: '', permissions: [] as string[] })
@@ -34,7 +33,6 @@ const RoleFormModal = ({ show, onHide, role, onSuccess }: Props) => {
     try {
       const res = await roleAPI.getAllPermissions()
       if (res.data.success) {
-        setAllPerms(res.data.data)
         setGrouped(res.data.grouped || {})
       }
     } catch { setError('Failed to load permissions') }

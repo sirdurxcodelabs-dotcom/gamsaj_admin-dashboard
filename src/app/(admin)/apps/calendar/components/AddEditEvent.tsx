@@ -9,7 +9,6 @@ import SelectFormInput from '@/components/form/SelectFormInput'
 import TextFormInput from '@/components/form/TextFormInput'
 import TextAreaFormInput from '@/components/form/TextAreaFormInput'
 import type { CalendarFormType } from '@/types/component-props'
-import type { SubmitEventType } from '../useCalendar'
 
 const AddEditEvent = ({ eventData, isEditable, onAddEvent, onRemoveEvent, onUpdateEvent, open, toggle }: CalendarFormType) => {
   const [isMultiDay, setIsMultiDay] = useState(false)
@@ -34,7 +33,7 @@ const AddEditEvent = ({ eventData, isEditable, onAddEvent, onRemoveEvent, onUpda
 
   type FormValues = yup.InferType<typeof eventFormSchema>
 
-  const { handleSubmit, control, setValue, reset, watch } = useForm<FormValues>({
+  const { handleSubmit, control, setValue, reset } = useForm<FormValues>({
     resolver: yupResolver(eventFormSchema),
     defaultValues: {
       title: '',
@@ -72,20 +71,20 @@ const AddEditEvent = ({ eventData, isEditable, onAddEvent, onRemoveEvent, onUpda
       
       // Set dates if available
       if (eventData.start) {
-        const startDate = new Date(eventData.start)
+        const startDate = new Date(eventData.start as any)
         setValue('startDate', startDate.toISOString().split('T')[0])
         setValue('startTime', startDate.toTimeString().slice(0, 5))
       }
       
       if (eventData.end) {
-        const endDate = new Date(eventData.end)
+        const endDate = new Date(eventData.end as any)
         setValue('endDate', endDate.toISOString().split('T')[0])
         setValue('endTime', endDate.toTimeString().slice(0, 5))
         
         // Check if multi-day
         if (eventData.start && eventData.end) {
-          const start = new Date(eventData.start)
-          const end = new Date(eventData.end)
+          const start = new Date(eventData.start as any)
+          const end = new Date(eventData.end as any)
           const daysDiff = Math.ceil((end.getTime() - start.getTime()) / (1000 * 60 * 60 * 24))
           setIsMultiDay(daysDiff > 0)
         }

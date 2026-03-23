@@ -1,4 +1,4 @@
-import { currentYear, developedBy } from '@/context/constants'
+import { currentYear } from '@/context/constants'
 import { Col, Container, Row } from 'react-bootstrap'
 
 const Footer = () => {
