@@ -10,12 +10,20 @@ import { uploadAPI } from '@/services/api'
 import AboutTab from './components/AboutTab'
 import PermissionsTab from './components/PermissionsTab'
 import ChangePasswordTab from './components/ChangePasswordTab'
+import SignatureTab from './components/SignatureTab'
+
+const SIGNATURE_ROLES = [
+  'super-admin', 'administration-manager', 'head-of-finance',
+  'business-development-manager', 'technical-director',
+  'managing-director', 'chairman',
+]
 
 const Profile = () => {
   const { profile, allPermissions, loading, updating, error, fetchProfile, fetchAllPermissions, updateProfile, changePassword } =
     useProfile()
   const { updateAvatar } = useAuthContext()
   const [activeTab, setActiveTab] = useState('about')
+  const canSign = SIGNATURE_ROLES.includes((profile as any)?.role?.slug || '')
   const [successMessage, setSuccessMessage] = useState<string | null>(null)
   const [errorMessage, setErrorMessage] = useState<string | null>(null)
   const [avatarUploading, setAvatarUploading] = useState(false)
@@ -205,6 +213,13 @@ const Profile = () => {
                           <IconifyIcon icon="mdi:lock-reset" className="me-1" />Change Password
                         </NavLink>
                       </NavItem>
+                      {canSign && (
+                        <NavItem as="li" className="mt-2">
+                          <NavLink eventKey="signature" className="fs-5 p-2">
+                            <IconifyIcon icon="ri:pen-nib-line" className="me-1" />Signature
+                          </NavLink>
+                        </NavItem>
+                      )}
                     </Nav>
                     <TabContent className="m-0 p-2 p-sm-4">
                       <TabPane eventKey="about">
@@ -216,6 +231,11 @@ const Profile = () => {
                       <TabPane eventKey="password">
                         <ChangePasswordTab onChangePassword={handleChangePassword} updating={updating} />
                       </TabPane>
+                      {canSign && (
+                        <TabPane eventKey="signature">
+                          <SignatureTab signature={(profile as any)?.signature} onUpdated={fetchProfile} />
+                        </TabPane>
+                      )}
                     </TabContent>
                   </TabContainer>
                 </div>

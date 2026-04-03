@@ -105,6 +105,11 @@ export const uploadAPI = {
     formData.append('avatar', file);
     return api.post('/upload/avatar', formData, { headers: { 'Content-Type': 'multipart/form-data' } });
   },
+  uploadSignature: (file: File) => {
+    const formData = new FormData();
+    formData.append('signature', file);
+    return api.post('/upload/signature', formData, { headers: { 'Content-Type': 'multipart/form-data' } });
+  },
 };
 
 // Connections endpoints
@@ -333,6 +338,23 @@ export const projectAPI = {
   deleteUpdate: (id: string, updateId: string) =>
     api.delete(`/projects/${id}/updates/${updateId}`),
   seedDemo: () => api.post('/projects/seed-demo', {}),
+};
+
+// Billing endpoints
+export const billingAPI = {
+  getAll: (params?: { type?: string; status?: string; page?: number; limit?: number }) =>
+    api.get('/billing', { params }),
+  getOne: (id: string) => api.get(`/billing/${id}`),
+  create: (data: any) => api.post('/billing', data),
+  update: (id: string, data: any) => api.put(`/billing/${id}`, data),
+  remove: (id: string) => api.delete(`/billing/${id}`),
+  convert: (id: string) => api.post(`/billing/${id}/convert`, {}),
+  markPaid: (id: string, paymentDate?: string) =>
+    api.post(`/billing/${id}/mark-paid`, { paymentDate }),
+  sendEmail: (id: string, data: { to: string; message: string }) =>
+    api.post(`/billing/${id}/send-email`, data),
+  addPayment: (id: string, data: { amount: number; method: string; note?: string; date?: string }) =>
+    api.post(`/billing/${id}/add-payment`, data),
 };
 
 export default api;

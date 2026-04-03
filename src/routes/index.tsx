@@ -18,6 +18,10 @@ const Calendar = lazy(() => import('@/app/(admin)/apps/calendar/page'))
 const Email = lazy(() => import('@/app/(admin)/apps/email/page'))
 const EmailCompose = lazy(() => import('@/app/(admin)/apps/email/compose/page'))
 
+// billing
+const BillingPage = lazy(() => import('@/app/(admin)/apps/billing/page'))
+const BillingDocument = lazy(() => import('@/app/(admin)/apps/billing/[id]/page'))
+
 // content
 const ProjectsPage = lazy(() => import('@/app/(admin)/content/projects/page'))
 const BlogsPage = lazy(() => import('@/app/(admin)/content/blogs/page'))
@@ -25,9 +29,6 @@ const CompanyInfoPage = lazy(() => import('@/app/(admin)/content/company-info/pa
 
 // pages
 const ProfilePages = lazy(() => import('@/app/(admin)/pages/profile/page'))
-const InvoiceReport = lazy(() => import('@/app/(admin)/apps/invoices/report/page'))
-const InvoiceList = lazy(() => import('@/app/(admin)/pages/starter/page')) // Placeholder
-const InvoiceDetail = lazy(() => import('@/app/(admin)/apps/invoices/[invoiceId]/page'))
 const MaintenancePages = lazy(() => import('@/app/(other)/maintenance/page'))
 const StarterPages = lazy(() => import('@/app/(admin)/pages/starter/page'))
 
@@ -75,19 +76,29 @@ const appsRoutes: RoutesProps[] = [
     element: <EmailCompose />,
   },
   {
-    path: '/apps/invoices/report',
-    name: 'Invoice Report',
-    element: <InvoiceReport />,
+    path: '/apps/billing/estimates',
+    name: 'Estimates',
+    element: <BillingPage />,
   },
   {
-    path: '/apps/invoices',
-    name: 'Invoice List',
-    element: <InvoiceList />,
+    path: '/apps/billing/invoices',
+    name: 'Invoices',
+    element: <BillingPage />,
   },
   {
-    name: 'Invoice Details',
-    path: '/apps/invoices/:invoiceId',
-    element: <InvoiceDetail/>,
+    path: '/apps/billing/receipts',
+    name: 'Receipts',
+    element: <BillingPage />,
+  },
+  {
+    path: '/apps/billing',
+    name: 'Documents',
+    element: <BillingPage />,
+  },
+  {
+    path: '/apps/billing/:id',
+    name: 'Document View',
+    element: <BillingDocument />,
   },
 ]
 

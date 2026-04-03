@@ -1,15 +1,9 @@
-
 import { Link } from 'react-router-dom'
 import { Card, Col, Container, Row } from 'react-bootstrap'
 import errorImg from '@/assets/images/svg/500.svg'
-
-import logo from '@/assets/images/logo.png'
-import logoDark from '@/assets/images/logo-dark.png'
 import authImg from '@/assets/images/auth-img.jpg'
 import IconifyIcon from '@/components/wrappers/IconifyIcon'
-
-
-
+import AuthLogo from '@/components/AuthLogo'
 
 const Error500 = () => {
   return (
@@ -21,14 +15,7 @@ const Error500 = () => {
               <Row className="g-0">
                 <Col lg={6}>
                   <div className="d-flex flex-column h-100">
-                    <div className="auth-brand p-4 text-center">
-                      <Link to="/" className="logo-light">
-                        <img src={logo} alt="logo" height={28} />
-                      </Link>
-                      <Link to="/" className="logo-dark">
-                        <img src={logoDark} alt="dark logo" height={28} />
-                      </Link>
-                    </div>
+                    <AuthLogo />
                     <div className="p-4 mt-auto">
                       <div className="d-flex justify-content-center mb-5">
                         <img src={errorImg} alt="error-image" className="img-fluid" />
