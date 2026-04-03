@@ -8,12 +8,6 @@ interface Props {
   onUpdated: () => void
 }
 
-const ALLOWED_ROLES = [
-  'super-admin', 'administration-manager', 'head-of-finance',
-  'business-development-manager', 'technical-director',
-  'managing-director', 'chairman',
-]
-
 const SignatureTab = ({ signature, onUpdated }: Props) => {
   const [uploading, setUploading] = useState(false)
   const [preview, setPreview] = useState<string | null>(null)

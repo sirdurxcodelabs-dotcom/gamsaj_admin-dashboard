@@ -9,11 +9,6 @@ import ShareModal from './ShareModal'
 import PaymentModal from './PaymentModal'
 import { BillingToastProvider, showToast } from './BillingToast'
 
-const TYPE_BADGE: Record<string, string> = {
-  estimate: 'warning',
-  invoice: 'primary',
-  receipt: 'success',
-}
 const STATUS_BADGE: Record<string, string> = {
   draft: 'secondary',
   sent: 'info',
