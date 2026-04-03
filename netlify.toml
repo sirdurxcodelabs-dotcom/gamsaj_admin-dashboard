@@ -1,7 +1,9 @@
 [build]
-  base    = ""
   command = "npm run build"
   publish = "dist"
+
+[build.environment]
+  VITE_API_URL = "https://gamsaj-api.onrender.com/api"
 
 [[redirects]]
   from = "/*"
