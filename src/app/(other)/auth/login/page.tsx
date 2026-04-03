@@ -1,53 +1,65 @@
-import { Card, Col, Container, Row } from 'react-bootstrap'
-
+import { Col, Container, Row } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import AuthLogo from '@/components/AuthLogo'
 import LoginForm from './components/LoginForm'
 
+const BG = 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1200&q=80'
 
-import authImg from '@/assets/images/auth-img.jpg'
+const Login = () => (
+  <div className="auth-bg">
+    <Container>
+      <Row className="justify-content-center">
+        <Col xxl={10} lg={11}>
+          <div className="auth-card card">
+            <Row className="g-0">
+              {/* Form side */}
+              <Col lg={5} className="auth-form-side">
+                <AuthLogo />
+                <div className="auth-form-body">
+                  <h2 className="auth-title">Welcome Back</h2>
+                  <p className="auth-subtitle">Sign in to GAMSAJ Admin Dashboard</p>
+                  <LoginForm />
+                  <p className="text-center mt-3 mb-0" style={{ fontSize: 13 }}>
+                    Need an account?{' '}
+                    <Link to="/auth/register" className="auth-link">Register here</Link>
+                  </p>
+                </div>
+                <p className="auth-footer-text">
+                  © {new Date().getFullYear()} GAMSAJ International Limited — RC: 965221
+                </p>
+              </Col>
 
-
-
-const Login = () => {
-  return (
-    <div className="account-pages p-sm-5  position-relative">
-      <Container>
-        <Row className="justify-content-center">
-          <Col xxl={9} lg={11}>
-            <Card className="overflow-hidden">
-              <Row className="g-0">
-                <Col lg={6}>
-                  <div className="d-flex flex-column h-100">
-                    <AuthLogo />
-                    <div className="p-4 my-auto text-center">
-                      <h4 className="fs-20">Sign In</h4>
-                      <p className="text-muted mb-4">
-                        Enter your email address and password to <br /> access account.
-                      </p>
-                      <LoginForm />
+              {/* Panel side */}
+              <Col lg={7} className="d-none d-lg-block">
+                <div className="auth-panel-side h-100" style={{ backgroundImage: `url('${BG}')` }}>
+                  <div className="auth-panel-overlay" />
+                  <div className="auth-panel-content">
+                    <span className="auth-panel-badge">GAMSAJ International Limited</span>
+                    <h2 className="auth-panel-title">Building Nigeria's<br />Infrastructure</h2>
+                    <p className="auth-panel-sub">Civil Engineering · Real Estate · Industrial Construction</p>
+                    <div className="auth-panel-stats">
+                      <div className="stat-item">
+                        <div className="stat-value">14+</div>
+                        <div className="stat-label">Years Active</div>
+                      </div>
+                      <div className="stat-item">
+                        <div className="stat-value">200+</div>
+                        <div className="stat-label">Projects Done</div>
+                      </div>
+                      <div className="stat-item">
+                        <div className="stat-value">RC 965221</div>
+                        <div className="stat-label">Registered</div>
+                      </div>
                     </div>
                   </div>
-                </Col>
-                <Col lg={6} className="d-none d-lg-block">
-                  <img src={authImg} alt="image" className="img-fluid rounded h-100" />
-                </Col>
-              </Row>
-            </Card>
-          </Col>
-        </Row>
-        <Row>
-          <Col xs={12} className="text-center">
-            <p className="text-dark-emphasis">
-              Don&apos;t have an account?
-              <Link to="/auth/register" className="text-dark fw-bold ms-1 link-offset-3 text-decoration-underline">
-                <b>Sign up</b>
-              </Link>
-            </p>
-          </Col>
-        </Row>
-      </Container>
-    </div>
-  )
-}
+                </div>
+              </Col>
+            </Row>
+          </div>
+        </Col>
+      </Row>
+    </Container>
+  </div>
+)
+
 export default Login

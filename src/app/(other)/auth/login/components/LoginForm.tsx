@@ -1,7 +1,6 @@
 
 
 import IconifyIcon from '@/components/wrappers/IconifyIcon'
-import ThirdPartyLogin from '@/components/ThirdPartyLogin'
 import { Link } from 'react-router-dom'
 import TextFormInput from '@/components/form/TextFormInput'
 import useSignIn from './useSignIn'
@@ -14,7 +13,6 @@ const LoginForm = () => {
   return (
     <form onSubmit={login} className="text-start">
       <TextFormInput control={control} name="email" containerClassName="mb-3" label="Email address" id="email-id" placeholder="Enter your email" />
-
       <PasswordFormInput
         control={control}
         name="password"
@@ -23,25 +21,22 @@ const LoginForm = () => {
         id="password-id"
         label={
           <Fragment>
-            <Link to="/auth/forgot-pass" className="text-muted float-end">
-              <small>Forgot your password?</small>
+            <Link to="/auth/forgot-password" className="float-end auth-link" style={{ fontSize: 12 }}>
+              Forgot password?
             </Link>
-            <label htmlFor="password" className="form-label">
-              Password
-            </label>
+            <label htmlFor="password-id" className="form-label">Password</label>
           </Fragment>
         }
       />
-
       <div className="mb-3">
         <FormCheck label="Remember me" id="sign-in" />
       </div>
-      <div className="mb-0 text-start">
-        <Button variant="soft-primary" disabled={loading} className="w-100" type="submit">
-          <IconifyIcon icon="ri:login-circle-fill" className="me-1" /> <span className="fw-bold">Log In</span>
+      <div className="mb-0">
+        <Button className="btn-auth btn w-100" disabled={loading} type="submit">
+          <IconifyIcon icon="ri:login-circle-fill" className="me-1" />
+          <span className="fw-bold">{loading ? 'Signing in...' : 'Sign In'}</span>
         </Button>
       </div>
-      <ThirdPartyLogin />
     </form>
   )
 }

@@ -47,10 +47,10 @@ const ForgotPasswordForm = () => {
       {error && <Alert variant="danger" className="py-2">{error}</Alert>}
       <TextFormInput control={control} name="email" containerClassName="mb-3" label="Email address" id="email-id" placeholder="Enter your email" />
       <div className="mb-0 text-start">
-        <Button variant="soft-primary" className="w-100" type="submit" disabled={loading}>
+        <Button className="btn-auth btn w-100" type="submit" disabled={loading}>
           {loading
             ? <><Spinner size="sm" className="me-1" />Sending...</>
-            : <><IconifyIcon icon="ri:loop-left-line" className="me-1 fw-bold" /><span className="fw-bold">Reset Password</span></>}
+            : <><IconifyIcon icon="ri:loop-left-line" className="me-1 fw-bold" /><span className="fw-bold">Send Reset Link</span></>}
         </Button>
       </div>
     </form>

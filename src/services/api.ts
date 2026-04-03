@@ -42,8 +42,8 @@ export const authAPI = {
   login: (email: string, password: string) =>
     api.post('/auth/login', { email, password }),
   
-  register: (name: string, email: string, password: string) =>
-    api.post('/auth/register', { name, email, password }),
+  register: (name: string, email: string, password: string, roleId?: string) =>
+    api.post('/auth/register', { name, email, password, roleId }),
   
   getMe: () => api.get('/auth/me'),
   
@@ -338,6 +338,24 @@ export const projectAPI = {
   deleteUpdate: (id: string, updateId: string) =>
     api.delete(`/projects/${id}/updates/${updateId}`),
   seedDemo: () => api.post('/projects/seed-demo', {}),
+};
+
+// Partner endpoints
+export const partnerAPI = {
+  getAll: (params?: { active?: string }) => api.get('/partners', { params }),
+  getOne: (id: string) => api.get(`/partners/${id}`),
+  create: (data: any) => api.post('/partners', data),
+  update: (id: string, data: any) => api.put(`/partners/${id}`, data),
+  remove: (id: string) => api.delete(`/partners/${id}`),
+};
+
+// Team endpoints
+export const teamAPI = {
+  getAll: (params?: { limit?: number; active?: string }) => api.get('/team', { params }),
+  getOne: (id: string) => api.get(`/team/${id}`),
+  create: (data: any) => api.post('/team', data),
+  update: (id: string, data: any) => api.put(`/team/${id}`, data),
+  remove: (id: string) => api.delete(`/team/${id}`),
 };
 
 // Billing endpoints

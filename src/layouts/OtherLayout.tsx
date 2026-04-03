@@ -1,26 +1,24 @@
 
 import FallbackLoading from '@/components/FallbackLoading'
-import { currentYear, developedBy } from '@/context/constants'
+import { currentYear } from '@/context/constants'
 import type { ChildrenType } from '@/types/component-props'
 import { Suspense, useEffect } from 'react'
 
 const OtherLayout = ({ children }: ChildrenType) => {
   useEffect(() => {
-    document.body.classList.add('authentication-bg', 'position-relative'),
-      (document.body.style.height = '100vh')
+    // Remove old auth bg class — our pages handle their own background
+    document.body.classList.remove('authentication-bg')
+    document.body.style.height = ''
+    document.body.style.background = 'transparent'
     return () => {
-      document.body.classList.remove('authentication-bg', 'position-relative'),
-        (document.body.style.height = '100vh')
+      document.body.style.background = ''
     }
   }, [])
-  return (
-    <>
-      <Suspense fallback={<FallbackLoading />}>{children}</Suspense>
 
-      <footer className="footer footer-alt fw-medium">
-        <span className="text-dark-emphasis">{currentYear} © Techmin - Theme by {developedBy}</span>
-      </footer>
-    </>
+  return (
+    <Suspense fallback={<FallbackLoading />}>
+      {children}
+    </Suspense>
   )
 }
 export default OtherLayout

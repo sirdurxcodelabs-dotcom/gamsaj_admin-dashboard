@@ -1,55 +1,55 @@
-import AuthLogo from '@/components/AuthLogo'
-
-
+import { Col, Container, Row } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
-import { Card, Col, Container, Row } from 'react-bootstrap'
-
-import authImg from '@/assets/images/auth-img.jpg'
+import AuthLogo from '@/components/AuthLogo'
 import ForgotPasswordForm from './components/ForgotPasswordForm'
 
+const BG = 'https://images.unsplash.com/photo-1590644365607-5f3e8e7e3b3e?w=1200&q=80'
 
-
-const ForgotPassword = () => {
-  return (
-    <div className="account-pages p-sm-5  position-relative">
-      <Container>
-        <Row className="justify-content-center">
-          <Col xxl={9} lg={11}>
-            <Card className="overflow-hidden">
-              <Row className="g-0">
-                <Col lg={6}>
-                  <div className="d-flex flex-column h-100">
-                    <AuthLogo />
-                    <div className="p-4 my-auto text-center">
-                      <div>
-                        <h4 className="fs-20">Forgot Password?</h4>
-                        <p className="text-muted mb-3">
-                          Enter your email address and we&apos;ll send you an email with instructions to reset your password.
-                        </p>
-                      </div>
-                      <ForgotPasswordForm />
-                    </div>
+const ForgotPassword = () => (
+  <div className="auth-bg">
+    <Container>
+      <Row className="justify-content-center">
+        <Col xxl={9} lg={11}>
+          <div className="auth-card card">
+            <Row className="g-0">
+              <Col lg={5} className="auth-form-side">
+                <AuthLogo />
+                <div className="auth-form-body text-center">
+                  <div className="auth-icon-circle mx-auto">
+                    <i className="ri-lock-password-line" />
                   </div>
-                </Col>
-                <Col lg={6} className="d-none d-lg-block">
-                  <img src={authImg} alt="image" className="img-fluid rounded h-100" />
-                </Col>
-              </Row>
-            </Card>
-          </Col>
-        </Row>
-        <Row>
-          <Col xs={12} className="text-center">
-            <p className="text-dark-emphasis">
-              Don&apos;t have an account?
-              <Link to="/auth/register" className="text-dark fw-bold ms-1 link-offset-3 text-decoration-underline">
-                <b>Sign up</b>
-              </Link>
-            </p>
-          </Col>
-        </Row>
-      </Container>
-    </div>
-  )
-}
+                  <h2 className="auth-title">Forgot Password?</h2>
+                  <p className="auth-subtitle">
+                    Enter your email and we'll send you a reset link. It expires in 10 minutes.
+                  </p>
+                  <ForgotPasswordForm />
+                  <p className="text-center mt-3 mb-0" style={{ fontSize: 13 }}>
+                    Remember it?{' '}
+                    <Link to="/auth/login" className="auth-link">Sign In</Link>
+                  </p>
+                </div>
+                <p className="auth-footer-text">
+                  © {new Date().getFullYear()} GAMSAJ International Limited — RC: 965221
+                </p>
+              </Col>
+              <Col lg={7} className="d-none d-lg-block">
+                <div className="auth-panel-side h-100" style={{ backgroundImage: `url('${BG}')` }}>
+                  <div className="auth-panel-overlay" />
+                  <div className="auth-panel-content">
+                    <span className="auth-panel-badge">Account Recovery</span>
+                    <h2 className="auth-panel-title">Secure Access<br />Always</h2>
+                    <p className="auth-panel-sub">
+                      Your GAMSAJ account is protected with enterprise-grade security
+                    </p>
+                  </div>
+                </div>
+              </Col>
+            </Row>
+          </div>
+        </Col>
+      </Row>
+    </Container>
+  </div>
+)
+
 export default ForgotPassword

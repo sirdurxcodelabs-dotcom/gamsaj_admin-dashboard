@@ -3,6 +3,8 @@ import PageTitle from '@/components/PageTitle'
 import { Card, CardBody, Col, Nav, NavItem, NavLink, Row, TabContainer, TabContent, TabPane } from 'react-bootstrap'
 import AboutTab from './components/AboutTab'
 import NavigationTab from './components/NavigationTab'
+import TeamMembersTab from './components/TeamMembersTab'
+import PartnersTab from './components/PartnersTab'
 
 const CompanyInformation = () => {
   const [activeTab, setActiveTab] = useState('about')
@@ -26,6 +28,16 @@ const CompanyInformation = () => {
                       <i className="ri-navigation-line me-1" />Navigation
                     </NavLink>
                   </NavItem>
+                  <NavItem>
+                    <NavLink eventKey="team" style={{ cursor: 'pointer' }}>
+                      <i className="ri-team-line me-1" />Team Members
+                    </NavLink>
+                  </NavItem>
+                  <NavItem>
+                    <NavLink eventKey="partners" style={{ cursor: 'pointer' }}>
+                      <i className="ri-shake-hands-line me-1" />Partners
+                    </NavLink>
+                  </NavItem>
                 </Nav>
                 <TabContent>
                   <TabPane eventKey="about">
@@ -33,6 +45,12 @@ const CompanyInformation = () => {
                   </TabPane>
                   <TabPane eventKey="navigation">
                     <NavigationTab />
+                  </TabPane>
+                  <TabPane eventKey="team">
+                    <TeamMembersTab />
+                  </TabPane>
+                  <TabPane eventKey="partners">
+                    <PartnersTab />
                   </TabPane>
                 </TabContent>
               </TabContainer>
