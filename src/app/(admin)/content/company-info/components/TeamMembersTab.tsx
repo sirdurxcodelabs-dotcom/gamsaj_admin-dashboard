@@ -62,9 +62,11 @@ const TeamMembersTab = () => {
       let photoUrl = form.photo || ''
       let photoPublicId = form.photoPublicId || ''
       if (photoFile) {
-        const up = await uploadAPI.uploadSingle(photoFile)
-        photoUrl = up.data.data.url
-        photoPublicId = up.data.data.filename || ''
+        try {
+          const up = await uploadAPI.uploadSingle(photoFile)
+          photoUrl = up.data.data.url
+          photoPublicId = up.data.data.filename || ''
+        } catch { setMsg({ type: 'danger', text: 'Photo upload failed. Saving without photo.' }) }
       }
       const payload = { ...form, photo: photoUrl, photoPublicId }
       if (editMember) {

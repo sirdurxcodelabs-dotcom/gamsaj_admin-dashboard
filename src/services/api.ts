@@ -340,6 +340,15 @@ export const projectAPI = {
   seedDemo: () => api.post('/projects/seed-demo', {}),
 };
 
+// Testimonial endpoints
+export const testimonialAPI = {
+  getAll: (params?: { active?: string; satisfiedOnly?: string }) => api.get('/testimonials', { params }),
+  getOne: (id: string) => api.get(`/testimonials/${id}`),
+  create: (data: any) => api.post('/testimonials', data),
+  update: (id: string, data: any) => api.put(`/testimonials/${id}`, data),
+  remove: (id: string) => api.delete(`/testimonials/${id}`),
+};
+
 // Partner endpoints
 export const partnerAPI = {
   getAll: (params?: { active?: string }) => api.get('/partners', { params }),

@@ -5,6 +5,7 @@ import AboutTab from './components/AboutTab'
 import NavigationTab from './components/NavigationTab'
 import TeamMembersTab from './components/TeamMembersTab'
 import PartnersTab from './components/PartnersTab'
+import TestimonialsTab from './components/TestimonialsTab'
 
 const CompanyInformation = () => {
   const [activeTab, setActiveTab] = useState('about')
@@ -38,6 +39,11 @@ const CompanyInformation = () => {
                       <i className="ri-shake-hands-line me-1" />Partners
                     </NavLink>
                   </NavItem>
+                  <NavItem>
+                    <NavLink eventKey="testimonials" style={{ cursor: 'pointer' }}>
+                      <i className="ri-chat-quote-line me-1" />Testimonials
+                    </NavLink>
+                  </NavItem>
                 </Nav>
                 <TabContent>
                   <TabPane eventKey="about">
@@ -51,6 +57,9 @@ const CompanyInformation = () => {
                   </TabPane>
                   <TabPane eventKey="partners">
                     <PartnersTab />
+                  </TabPane>
+                  <TabPane eventKey="testimonials">
+                    <TestimonialsTab />
                   </TabPane>
                 </TabContent>
               </TabContainer>

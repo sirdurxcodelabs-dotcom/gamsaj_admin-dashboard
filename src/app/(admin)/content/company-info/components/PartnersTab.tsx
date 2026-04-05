@@ -58,9 +58,11 @@ const PartnersTab = () => {
       let logo = form.logo || ''
       let logoPublicId = form.logoPublicId || ''
       if (logoFile) {
-        const up = await uploadAPI.uploadSingle(logoFile)
-        logo = up.data.data.url
-        logoPublicId = up.data.data.filename || ''
+        try {
+          const up = await uploadAPI.uploadSingle(logoFile)
+          logo = up.data.data.url
+          logoPublicId = up.data.data.filename || ''
+        } catch { setMsg({ type: 'danger', text: 'Logo upload failed. Saving without logo.' }) }
       }
       const payload = { ...form, logo, logoPublicId }
       if (editPartner) {
