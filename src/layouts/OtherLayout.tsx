@@ -1,6 +1,5 @@
 
 import FallbackLoading from '@/components/FallbackLoading'
-import { currentYear } from '@/context/constants'
 import type { ChildrenType } from '@/types/component-props'
 import { Suspense, useEffect } from 'react'
 
